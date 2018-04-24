@@ -24,6 +24,12 @@ public class ResourceLoader {
 			BufferedImage normalCan = ImageIO.read(new File(cLoader.getResource("Tin_Can.png").toURI()));
 			LOADED_ASSETS.put("Tin_Can.png", normalCan);
 			
+			BufferedImage lPipe = ImageIO.read(new File(cLoader.getResource("lpipe.png").toURI()));
+			LOADED_ASSETS.put("lpipe.png", lPipe);
+			
+			BufferedImage RPipe = ImageIO.read(new File(cLoader.getResource("rpipe.png").toURI()));
+			LOADED_ASSETS.put("rpipe.png", RPipe);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {

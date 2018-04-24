@@ -23,7 +23,7 @@ public class TinCan implements Entity {
 	private double angleOfRotation = 0;
 	
 	//movement
-	private int xVel = 10;
+	private int xVel = 7;
 	
 	public TinCan() {
 		
@@ -33,6 +33,11 @@ public class TinCan implements Entity {
 	}
 	
 	public void move(int constant) {
+		if (position.getX() + (constant*xVel) < 0) {
+			position.setLocation(0, position.getY());
+		} else if (position.getX() + hitBox.getWidth() + (constant*xVel) > GameLauncher.WIDTH) {
+			position.setLocation(GameLauncher.WIDTH - hitBox.getWidth(), position.getY());
+		}
 		position.setLocation(position.getX() + (constant*xVel), position.getY());
 	}
 	
@@ -76,9 +81,6 @@ public class TinCan implements Entity {
 		Shape bounds = at.createTransformedShape(new Rectangle(states.get(currentState).getWidth(), states.get(currentState).getHeight()));
 		g.draw(bounds.getBounds());
 		
-		if (bounds.getBounds().getX() < 0) {
-			
-		}
 	}
 	
 }

@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 
+import Entities.Pipe;
 import Entities.TinCan;
 import flappytin.GameLauncher;
 import flappytin.ResourceLoader;
@@ -11,14 +12,20 @@ public class PlayState extends GameState{
 	
 	private TinCan tinCan;
 	
+	private double pipeInterval = 1;
+	private int pipeSpeed = 1;
+	
 	private double baseRotation = 45;
 	
 	private boolean left = false;
 	private boolean right = false;
-
+	
+	private Pipe p;
+	
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
 		
+		p = new Pipe();
 	}
 
 	@Override
@@ -49,16 +56,20 @@ public class PlayState extends GameState{
 	public void draw(Graphics2D g) {
 		g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("flappymenubg.png"), 0, 0, null);
 		tinCan.draw(g);
+		p.draw(g);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		p.ascend(pipeSpeed);
 		int keyP = e.getKeyCode();
 		switch (keyP) {
 		
+		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
 			left = true;
 			break;
+		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_D:
 			right = true;
 			break;
@@ -71,9 +82,11 @@ public class PlayState extends GameState{
 		
 		switch (keyP) {
 		
+		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
 			left = false;
 			break;
+		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_D:
 			right = false;
 			break;

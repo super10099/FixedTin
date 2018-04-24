@@ -17,6 +17,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	private boolean isRunning = false;
 	private Thread thread;
 	
+	private int score = 0;
+	
 	public GamePanel(Dimension d) {
 		setPreferredSize(d);
 		
