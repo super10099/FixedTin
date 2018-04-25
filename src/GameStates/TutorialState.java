@@ -40,4 +40,10 @@ public class TutorialState extends GameState{
 		
 	}
 
+	@Override
+	public void deInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

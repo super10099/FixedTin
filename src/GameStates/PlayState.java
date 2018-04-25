@@ -14,6 +14,9 @@ import flappytin.ResourceLoader;
 
 public class PlayState extends GameState{
 	
+	private int pipeCount = 0;
+	private int score = 0;
+	
 	private TinCan tinCan;
 	
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
@@ -21,7 +24,8 @@ public class PlayState extends GameState{
 	
 	private int pipeInterval = 60 * 1; // pipe per 60 ticks
 	private int tickCount = pipeInterval; // start at interval, so pipe is created immediately
-	private int pipeSpeed = 5;
+	private int pipeSpeed = 3;
+	private int nominalY = 10;
 	
 	private double baseRotation = 25;
 	
@@ -37,8 +41,17 @@ public class PlayState extends GameState{
 	public void init() {
 		tinCan = new TinCan();
 		tinCan.setState(0);
-		tinCan.setPosition(GameLauncher.WIDTH/2 - tinCan.getWidth()/2, 10);
+		tinCan.setPosition(GameLauncher.WIDTH/2 - tinCan.getWidth()/2, nominalY);
 		initialized = true;
+	}
+	
+	public void gameOver() {
+		gsm.popState();
+	}
+	
+	//gets called when state is popped
+	public void deInit() {
+		
 	}
 
 	@Override
@@ -47,7 +60,8 @@ public class PlayState extends GameState{
 		tickCount++;
 		if (tickCount >= pipeInterval) {
 			tickCount = 0;
-			pipes.add(new Pipe());
+			pipeCount++;
+			pipes.add(new Pipe(pipeCount));
 		}
 		
 		//orientation and movement
@@ -75,7 +89,12 @@ public class PlayState extends GameState{
 			pipeHitBoxes = pipe.getHitBox();
 			tinCanHitBox = tinCan.getHitBox();
 			if (pipeHitBoxes[0].intersects(tinCanHitBox) == true || pipeHitBoxes[1].intersects(tinCanHitBox) == true) {
-				System.out.println(tinCanHitBox);
+				gameOver();
+			}
+			
+			//check point
+			if (pipe.getYOff() + pipe.getHeight() <= 20) {
+				pipeIterator.remove();
 			}
 		}
 		
@@ -85,7 +104,8 @@ public class PlayState extends GameState{
 	@Override
 	public void draw(Graphics2D g) {
 		//g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("polgyonMI.jpg"), 0, 0, null);
-		g.setBackground(Color.MAGENTA);
+		g.setColor(Color.BLACK);
+		g.fill(new Rectangle(GameLauncher.WIDTH, GameLauncher.HEIGHT));
 		tinCan.draw(g);
 		//draw each pipe
 		pipeIterator = pipes.iterator();

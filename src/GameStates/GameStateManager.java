@@ -21,16 +21,16 @@ public class GameStateManager {
 		
 		//adding credit state
 		CREDIT_STATE = new CreditState(this);
-		states.push(CREDIT_STATE);
+		//states.push(CREDIT_STATE);
 		
 		//adding tutorial state
 		TUTORIAL_STATE = new TutorialState(this);
-		states.push(TUTORIAL_STATE);
+		//states.push(TUTORIAL_STATE);
 		
 		// adding playstate
 		PLAY_STATE = new PlayState(this);
 		PLAY_STATE.init();
-		states.push(PLAY_STATE);
+		//states.push(PLAY_STATE);
 		
 		//adding menustate
 		MENU_STATE = new MenuState(this);
@@ -38,6 +38,11 @@ public class GameStateManager {
 		MENU_STATE.init();
 		
 		
+	}
+	
+	public void popState() {
+		states.peek().deInit();
+		states.pop();
 	}
 	
 	public void pushState(GameState state) {

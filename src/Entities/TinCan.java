@@ -24,10 +24,10 @@ public class TinCan implements Entity{
 	private Point position = new Point();
 	private double angleOfRotation = 0;
 	
-	private int Widht, Height;
+	private int Width, Height;
 	
 	//movement
-	private int xVel = 5;
+	private int xVel = 6;
 	
 	public TinCan() {
 		

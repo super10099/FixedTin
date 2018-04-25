@@ -13,6 +13,8 @@ import flappytin.ResourceLoader;
 
 public class Pipe implements Entity{
 	
+	public int id = 0;
+	
 	private Rectangle lPipeHitBox = new Rectangle();
 	private Rectangle rPipeHitBox = new Rectangle();
 	
@@ -21,11 +23,14 @@ public class Pipe implements Entity{
 	
 	private int inbetween = 100; //the gap
 	
+	private int height;
 	private int yOff = GameLauncher.HEIGHT; // the yoffset of pipes
 	
-	public Pipe() {
-		lPipeHitBox.setSize(new Dimension(lPipeImg.getWidth(), lPipeImg.getHeight()));
-		rPipeHitBox.setSize(new Dimension(rPipeImg.getWidth(), rPipeImg.getHeight()));
+	public Pipe(int id) {
+		this.id = id;
+		height = lPipeImg.getHeight();
+		lPipeHitBox.setSize(lPipeImg.getWidth(), height);
+		rPipeHitBox.setSize(lPipeImg.getWidth(), height);
 		
 		Random rand = new Random();
 		int xset = rand.nextInt(GameLauncher.WIDTH - inbetween);
@@ -45,6 +50,14 @@ public class Pipe implements Entity{
 	
 	public Rectangle[] getHitBox(){
 		return new Rectangle[] {lPipeHitBox, rPipeHitBox};
+	}
+	
+	public int getYOff() {
+		return yOff;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 	
 	@Override

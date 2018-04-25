@@ -19,6 +19,8 @@ import flappytin.GameLauncher;
 
 public class MenuState extends GameState{
 	
+	private int highScore = 0;
+	
 	private BufferedImage bgImage = null;
 	
 	String[] selections = {"Play", "How To Play", "Credits"};
@@ -90,6 +92,12 @@ public class MenuState extends GameState{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void deInit() {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -40,4 +40,10 @@ public class CreditState extends GameState{
 		
 	}
 
+	@Override
+	public void deInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

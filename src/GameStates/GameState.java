@@ -16,6 +16,7 @@ public abstract class GameState {
 	}
 	
 	public abstract void init();
+	public abstract void deInit();
 	public abstract void tick();
 	public abstract void draw(Graphics2D g);
 	public abstract void keyPressed(KeyEvent e);
