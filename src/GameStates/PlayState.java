@@ -1,7 +1,11 @@
 package GameStates;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import Entities.Pipe;
 import Entities.TinCan;
@@ -12,20 +16,21 @@ public class PlayState extends GameState{
 	
 	private TinCan tinCan;
 	
-	private double pipeInterval = 1;
-	private int pipeSpeed = 1;
+	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
+	private Iterator<Pipe> pipeIterator;
 	
-	private double baseRotation = 45;
+	private int pipeInterval = 60 * 1; // pipe per 60 ticks
+	private int tickCount = pipeInterval; // start at interval, so pipe is created immediately
+	private int pipeSpeed = 5;
+	
+	private double baseRotation = 25;
 	
 	private boolean left = false;
 	private boolean right = false;
 	
-	private Pipe p;
-	
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
 		
-		p = new Pipe();
 	}
 
 	@Override
@@ -38,6 +43,13 @@ public class PlayState extends GameState{
 
 	@Override
 	public void tick() {
+		
+		tickCount++;
+		if (tickCount >= pipeInterval) {
+			tickCount = 0;
+			pipes.add(new Pipe());
+		}
+		
 		//orientation and movement
 		if (left && right) {
 			tinCan.setAngleOfRotation(Math.toRadians(0));
@@ -50,18 +62,40 @@ public class PlayState extends GameState{
 		} else {
 			tinCan.setAngleOfRotation(Math.toRadians(0));
 		}
+		
+		//ascend each pipe
+		pipeIterator = pipes.iterator();
+		Rectangle[] pipeHitBoxes;
+		Rectangle tinCanHitBox;
+		while (pipeIterator.hasNext()) {
+			Pipe pipe = pipeIterator.next();
+			pipe.ascend(pipeSpeed);
+			
+			//check for collisions
+			pipeHitBoxes = pipe.getHitBox();
+			tinCanHitBox = tinCan.getHitBox();
+			if (pipeHitBoxes[0].intersects(tinCanHitBox) == true || pipeHitBoxes[1].intersects(tinCanHitBox) == true) {
+				System.out.println(tinCanHitBox);
+			}
+		}
+		
+		
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("flappymenubg.png"), 0, 0, null);
+		//g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("polgyonMI.jpg"), 0, 0, null);
+		g.setBackground(Color.MAGENTA);
 		tinCan.draw(g);
-		p.draw(g);
+		//draw each pipe
+		pipeIterator = pipes.iterator();
+		while (pipeIterator.hasNext()) {
+			pipeIterator.next().draw(g);
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		p.ascend(pipeSpeed);
 		int keyP = e.getKeyCode();
 		switch (keyP) {
 		

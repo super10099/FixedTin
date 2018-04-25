@@ -30,6 +30,11 @@ public class ResourceLoader {
 			BufferedImage RPipe = ImageIO.read(new File(cLoader.getResource("rpipe.png").toURI()));
 			LOADED_ASSETS.put("rpipe.png", RPipe);
 			
+			BufferedImage forest = ImageIO.read(new File(cLoader.getResource("forest-patrol.jpg").toURI()));
+			LOADED_ASSETS.put("forest-patrol.jpg", forest);
+			
+			LOADED_ASSETS.put("polgyonMI.jpg", ImageIO.read(new File(cLoader.getResource("polgyonMI.jpg").toURI())));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {

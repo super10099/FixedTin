@@ -1,5 +1,6 @@
 package Entities;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -20,6 +21,8 @@ public class Pipe implements Entity{
 	
 	private int inbetween = 100; //the gap
 	
+	private int yOff = GameLauncher.HEIGHT; // the yoffset of pipes
+	
 	public Pipe() {
 		lPipeHitBox.setSize(new Dimension(lPipeImg.getWidth(), lPipeImg.getHeight()));
 		rPipeHitBox.setSize(new Dimension(rPipeImg.getWidth(), rPipeImg.getHeight()));
@@ -29,22 +32,28 @@ public class Pipe implements Entity{
 		
 		
 		
-		lPipeHitBox.setLocation(-(lPipeImg.getWidth() - xset), GameLauncher.HEIGHT - 50);
-		rPipeHitBox.setLocation((int) (lPipeHitBox.getX() + lPipeHitBox.getWidth() + inbetween), GameLauncher.HEIGHT - 50);
+		lPipeHitBox.setLocation(-(lPipeImg.getWidth() - xset), yOff);
+		rPipeHitBox.setLocation((int) (lPipeHitBox.getX() + lPipeHitBox.getWidth() + inbetween), yOff);
 		
 	}
 	
-	public void ascend(int yOff) {
-		lPipeHitBox.add(new Point(0, yOff));
-		rPipeHitBox.add(new Point(0, yOff));
+	public void ascend(int dYOff) {
+		yOff -= dYOff;
+		lPipeHitBox.setLocation((int) lPipeHitBox.getX(), yOff);
+		rPipeHitBox.setLocation((int) rPipeHitBox.getX(), yOff);
+	}
+	
+	public Rectangle[] getHitBox(){
+		return new Rectangle[] {lPipeHitBox, rPipeHitBox};
 	}
 	
 	@Override
 	public void draw(Graphics2D g) {
-		g.draw(lPipeHitBox);
-		g.drawImage(lPipeImg, (int) lPipeHitBox.getX(), (int) lPipeHitBox.getY(), null);
-		g.draw(rPipeHitBox);
-		g.drawImage(rPipeImg, (int) rPipeHitBox.getX(), (int) rPipeHitBox.getY(), null);
+		g.setColor(Color.ORANGE);
+		g.fill(lPipeHitBox);
+		//g.drawImage(lPipeImg, (int) lPipeHitBox.getX(), (int) lPipeHitBox.getY(), null);
+		g.fill(rPipeHitBox);
+		//g.drawImage(rPipeImg, (int) rPipeHitBox.getX(), (int) rPipeHitBox.getY(), null);
 	}
 
 }
