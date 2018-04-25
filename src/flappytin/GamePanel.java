@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		requestFocusInWindow();
 		addKeyListener(this);
 		gsm = new GameStateManager();
+		gsm.pushState(gsm.createMenuState());
 		isRunning = true;
 		thread = new Thread(this);
 		thread.start();

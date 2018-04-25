@@ -21,7 +21,7 @@ public class Pipe implements Entity{
 	private BufferedImage lPipeImg = (BufferedImage) ResourceLoader.LOADED_ASSETS.get("lpipe.png");
 	private BufferedImage rPipeImg = (BufferedImage) ResourceLoader.LOADED_ASSETS.get("rpipe.png");
 	
-	private int inbetween = 100; //the gap
+	private int inbetween = 80; //the gap
 	
 	private int height;
 	private int yOff = GameLauncher.HEIGHT; // the yoffset of pipes

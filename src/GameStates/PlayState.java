@@ -22,9 +22,9 @@ public class PlayState extends GameState{
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private Iterator<Pipe> pipeIterator;
 	
-	private int pipeInterval = 60 * 1; // pipe per 60 ticks
+	private int pipeInterval = 60 * 15/10; // pipe per 60 ticks
 	private int tickCount = pipeInterval; // start at interval, so pipe is created immediately
-	private int pipeSpeed = 3;
+	private int pipeSpeed = 2;
 	private int nominalY = 10;
 	
 	private double baseRotation = 25;
@@ -93,8 +93,8 @@ public class PlayState extends GameState{
 			}
 			
 			//check point
-			if (pipe.getYOff() + pipe.getHeight() <= 20) {
-				pipeIterator.remove();
+			if (pipe.getYOff() <= 20) {
+				//pipeIterator.remove();
 			}
 		}
 		

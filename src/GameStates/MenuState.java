@@ -76,7 +76,7 @@ public class MenuState extends GameState{
 			switch (currentSelection) {
 				case 0: // PLAY
 					System.out.println("PLAY");
-					gsm.pushState(gsm.PLAY_STATE);
+					gsm.pushState(gsm.createGameState());
 					break;
 				case 1: // tutorial
 					System.out.println("TUTORIAL");

@@ -8,37 +8,48 @@ import java.util.Stack;
 
 public class GameStateManager {
 	
-	protected final GameState MENU_STATE;
-	protected final GameState PLAY_STATE;
-	protected final GameState TUTORIAL_STATE;
-	protected final GameState CREDIT_STATE;
+	protected GameState MENU_STATE = null;
+	protected GameState PLAY_STATE = null;
+	protected GameState TUTORIAL_STATE = null;
+	protected GameState CREDIT_STATE = null;
 	
 	private Stack<GameState> states;
 	
 	
 	public GameStateManager() {
 		states = new Stack<GameState>();
-		
-		//adding credit state
-		CREDIT_STATE = new CreditState(this);
-		//states.push(CREDIT_STATE);
-		
-		//adding tutorial state
-		TUTORIAL_STATE = new TutorialState(this);
-		//states.push(TUTORIAL_STATE);
-		
-		// adding playstate
-		PLAY_STATE = new PlayState(this);
-		PLAY_STATE.init();
-		//states.push(PLAY_STATE);
-		
-		//adding menustate
-		MENU_STATE = new MenuState(this);
-		states.push(MENU_STATE);
-		MENU_STATE.init();
-		
+	}
+	
+	
+	public GameState createMenuState() {
+		GameState newState = new MenuState(this);
+		MENU_STATE = newState;
+		newState.init();
+		return newState;
+	}
+	
+	public GameState createGameState() {
+		GameState newState = new PlayState(this);
+		PLAY_STATE = newState;
+		newState.init();
+		return newState;
 		
 	}
+	
+	public GameState createTutorialState() {
+		GameState newState = new TutorialState(this);
+		TUTORIAL_STATE = newState;
+		newState.init();
+		return newState;
+	}
+	
+	public GameState createCreditState() {
+		GameState newState = new CreditState(this);
+		CREDIT_STATE = newState;
+		newState.init();
+		return newState;
+	}
+	
 	
 	public void popState() {
 		states.peek().deInit();
@@ -46,8 +57,8 @@ public class GameStateManager {
 	}
 	
 	public void pushState(GameState state) {
-		//System.out.println(state + "DA HELL" );
 		states.push(state);
+		//System.out.println(states.peek());
 	}
 	
 	public void tick() {
@@ -57,6 +68,7 @@ public class GameStateManager {
 	}
 	public void draw(Graphics2D g) {
 		GameState gs = states.peek();
+		//System.out.println(gs);
 		if (gs.getInit())
 			gs.draw(g);
 	}
