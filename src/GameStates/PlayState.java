@@ -1,5 +1,7 @@
 package GameStates;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -22,10 +24,10 @@ public class PlayState extends GameState{
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private Iterator<Pipe> pipeIterator;
 	
-	private int pipeInterval = 60 * 15/10; // pipe per 60 ticks
+	private int pipeInterval = 60 * 10/10; // pipe per 60 ticks
 	private int tickCount = pipeInterval; // start at interval, so pipe is created immediately
-	private int pipeSpeed = 2;
-	private int nominalY = 10;
+	private int pipeSpeed = 4;
+	private int nominalY = 25; // yPos of tinCan
 	
 	private double baseRotation = 25;
 	
@@ -90,11 +92,13 @@ public class PlayState extends GameState{
 			tinCanHitBox = tinCan.getHitBox();
 			if (pipeHitBoxes[0].intersects(tinCanHitBox) == true || pipeHitBoxes[1].intersects(tinCanHitBox) == true) {
 				gameOver();
+				((MenuState)gsm.MENU_STATE).setHighScore(score);
 			}
 			
 			//check point
-			if (pipe.getYOff() <= 20) {
-				//pipeIterator.remove();
+			if (pipe.getYOff() <= -20) {
+				score++;
+				pipeIterator.remove();
 			}
 		}
 		
@@ -103,9 +107,11 @@ public class PlayState extends GameState{
 
 	@Override
 	public void draw(Graphics2D g) {
-		//g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("polgyonMI.jpg"), 0, 0, null);
-		g.setColor(Color.BLACK);
-		g.fill(new Rectangle(GameLauncher.WIDTH, GameLauncher.HEIGHT));
+		g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("flappymenubg.png"), 0, 0, null);
+		String scrStr = "score: " + score;
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("SansSerif", Font.BOLD, 22));
+		g.drawString(scrStr, (GameLauncher.WIDTH - g.getFontMetrics().stringWidth(scrStr)) / 2, 17);
 		tinCan.draw(g);
 		//draw each pipe
 		pipeIterator = pipes.iterator();

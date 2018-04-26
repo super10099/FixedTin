@@ -19,7 +19,7 @@ import flappytin.GameLauncher;
 
 public class MenuState extends GameState{
 	
-	private int highScore = 0;
+	private int highScore = -1;
 	
 	private BufferedImage bgImage = null;
 	
@@ -38,10 +38,25 @@ public class MenuState extends GameState{
 	public void tick() {
 		
 	}
+	
+	public void setHighScore(int score) {
+		if (score > this.highScore) {
+			this.highScore = score;
+		}
+	}
 
 	@Override
 	public void draw(Graphics2D g) {
 		g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("flappymenubg.png"), 0, 0, null);
+		
+		//draw score
+		if (highScore > -1) {
+			String scrStr = "High Score: " + highScore;
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("SansSerif", Font.BOLD, 28));
+			g.drawString(scrStr, (GameLauncher.WIDTH - g.getFontMetrics().stringWidth(scrStr)) / 2, 30);
+		}
+		
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("Arial", Font.PLAIN, 20));
 		FontMetrics fm = g.getFontMetrics();
@@ -80,11 +95,11 @@ public class MenuState extends GameState{
 					break;
 				case 1: // tutorial
 					System.out.println("TUTORIAL");
-					gsm.pushState(gsm.TUTORIAL_STATE);
+					gsm.pushState(gsm.createTutorialState());
 					break;
 				case 2: // credits
 					System.out.println("CREDITS");
-					gsm.pushState(gsm.CREDIT_STATE);
+					gsm.pushState(gsm.createCreditState());
 					break;
 			}
 		}

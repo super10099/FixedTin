@@ -32,8 +32,8 @@ public class TinCan implements Entity{
 	public TinCan() {
 		
 		states.add((BufferedImage) ResourceLoader.LOADED_ASSETS.get("Tin_Can.png"));
-		//hitBox.setSize(new Dimension(states.get(currentState).getWidth(), states.get(currentState).getHeight()));
-		hitBox.setSize(new Dimension(20, 20));
+		hitBox.setSize(new Dimension(states.get(currentState).getWidth(), states.get(currentState).getHeight()));
+		//hitBox.setSize(new Dimension(20, 20));
 		
 	}
 	
@@ -83,13 +83,13 @@ public class TinCan implements Entity{
 	public void draw(Graphics2D g) {
 		AffineTransform at = new AffineTransform();
 		at.translate(position.getX(), position.getY());
-		//at.rotate(angleOfRotation, states.get(currentState).getWidth()/2, states.get(currentState).getHeight()/2);
+		outline2 = at.createTransformedShape(hitBox).getBounds();
 		at.rotate(angleOfRotation, hitBox.getWidth()/2, hitBox.getHeight()/2);
 		Shape outline = at.createTransformedShape(hitBox);
-		outline2 = new Rectangle(outline.getBounds());
 		g.setColor(Color.PINK);
-		g.fill(outline);
-		//g.drawImage(states.get(currentState), at, null);
+		//g.fill(outline2);
+		//g.fill(outline);
+		g.drawImage(states.get(currentState), at, null);
 		
 		Shape bounds = at.createTransformedShape(new Rectangle(states.get(currentState).getWidth(), states.get(currentState).getHeight()));
 		//g.draw(bounds.getBounds());

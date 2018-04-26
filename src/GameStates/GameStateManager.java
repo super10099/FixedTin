@@ -68,7 +68,6 @@ public class GameStateManager {
 	}
 	public void draw(Graphics2D g) {
 		GameState gs = states.peek();
-		//System.out.println(gs);
 		if (gs.getInit())
 			gs.draw(g);
 	}
