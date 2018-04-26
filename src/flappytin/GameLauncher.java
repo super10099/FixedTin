@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class GameLauncher extends JFrame{
 	
-	private static final String TITLE = "TCFTH";
+	private static final String TITLE = "Tin Can From The Heights";
 	
 	public final static int WIDTH = 350;
 	public final static int HEIGHT = 500;

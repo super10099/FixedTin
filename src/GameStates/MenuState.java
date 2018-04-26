@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 
+import flappytin.Background;
 import flappytin.GameLauncher;
 
 public class MenuState extends GameState{
@@ -23,7 +24,9 @@ public class MenuState extends GameState{
 	
 	private BufferedImage bgImage = null;
 	
-	String[] selections = {"Play", "How To Play", "Credits"};
+	private Background bg;
+	
+	String[] selections = {"Play", "Credits"};
 	private int currentSelection = 0;
 
 	public MenuState(GameStateManager gsm) {
@@ -31,12 +34,14 @@ public class MenuState extends GameState{
 	}
 	
 	public void init() {
+		bg = new Background("flappymenubg.png", 0, 0);
+		bg.setVector(.3, 0);
 		initialized = true;
 	}
 	
 	@Override
 	public void tick() {
-		
+		bg.tick();
 	}
 	
 	public void setHighScore(int score) {
@@ -47,8 +52,7 @@ public class MenuState extends GameState{
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage((Image) ResourceLoader.LOADED_ASSETS.get("flappymenubg.png"), 0, 0, null);
-		
+		bg.draw(g);
 		//draw score
 		if (highScore > -1) {
 			String scrStr = "High Score: " + highScore;
@@ -58,7 +62,7 @@ public class MenuState extends GameState{
 		}
 		
 		g.setColor(Color.BLACK);
-		g.setFont(new Font("Arial", Font.PLAIN, 20));
+		g.setFont(new Font("Dialogue", Font.PLAIN, 20));
 		FontMetrics fm = g.getFontMetrics();
 		for (int i=0; i<selections.length; i++) {
 			int x = (GameLauncher.WIDTH - fm.stringWidth(selections[i])) / 2;
@@ -85,7 +89,7 @@ public class MenuState extends GameState{
 			}
 		// selection go down
 		} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
-			currentSelection = (currentSelection + 1) % 3;
+			currentSelection = (currentSelection + 1) % 2;
 		// enter
 		} else if (keyCode == KeyEvent.VK_ENTER) {
 			switch (currentSelection) {
@@ -93,11 +97,12 @@ public class MenuState extends GameState{
 					System.out.println("PLAY");
 					gsm.pushState(gsm.createGameState());
 					break;
-				case 1: // tutorial
+				/*case 1: // tutorial
 					System.out.println("TUTORIAL");
 					gsm.pushState(gsm.createTutorialState());
 					break;
-				case 2: // credits
+				*/
+				case 1: // credits
 					System.out.println("CREDITS");
 					gsm.pushState(gsm.createCreditState());
 					break;

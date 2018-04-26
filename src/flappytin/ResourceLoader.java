@@ -35,6 +35,10 @@ public class ResourceLoader {
 			
 			LOADED_ASSETS.put("polgyonMI.jpg", ImageIO.read(new File(cLoader.getResource("polgyonMI.jpg").toURI())));
 			
+			LOADED_ASSETS.put("tincanBG.png", ImageIO.read(new File(cLoader.getResource("tincanBG.png").toURI())));
+			
+			LOADED_ASSETS.put("resizedCreditBG.png", ImageIO.read(new File(cLoader.getResource("resizedCreditBG.png").toURI())));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {

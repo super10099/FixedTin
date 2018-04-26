@@ -27,7 +27,7 @@ public class TinCan implements Entity{
 	private int Width, Height;
 	
 	//movement
-	private int xVel = 6;
+	private int xVel = 7;
 	
 	public TinCan() {
 		
