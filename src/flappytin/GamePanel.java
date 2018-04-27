@@ -34,7 +34,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	public void tick() {
 		repaint();
-		gsm.tick();
+		if (!gsm.getStack().isEmpty()) {
+			gsm.tick();
+		};
 	}
 	
 	public void render() {
@@ -84,7 +86,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		gsm.draw(g2);
+		if (!gsm.getStack().isEmpty()){
+			gsm.draw(g2);
+		}
 	}
 
 	@Override

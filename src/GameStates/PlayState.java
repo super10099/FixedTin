@@ -12,6 +12,7 @@ import java.util.Iterator;
 import Entities.Pipe;
 import Entities.TinCan;
 import flappytin.GameLauncher;
+import flappytin.PlayMusic;
 import flappytin.ResourceLoader;
 
 public class PlayState extends GameState{
@@ -34,6 +35,8 @@ public class PlayState extends GameState{
 	private boolean left = false;
 	private boolean right = false;
 	
+	private PlayMusic mplayer;
+	
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
 		
@@ -44,16 +47,22 @@ public class PlayState extends GameState{
 		tinCan = new TinCan();
 		tinCan.setState(0);
 		tinCan.setPosition(GameLauncher.WIDTH/2 - tinCan.getWidth()/2, nominalY);
+		
+		//PLAY MUSIC FUCK YEAH!!!
+		mplayer = new PlayMusic("291458_Waterflame___Time_machine.wav");
+		mplayer.play();
 		initialized = true;
 	}
 	
 	public void gameOver() {
 		gsm.popState();
+		gsm.pushState(gsm.MENU_STATE);
 	}
 	
 	//gets called when state is popped
 	public void deInit() {
-		
+		mplayer.turnOff();
+		initialized = false;
 	}
 
 	@Override

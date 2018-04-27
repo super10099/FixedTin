@@ -2,7 +2,12 @@ package flappytin;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GameLauncher extends JFrame{
@@ -28,6 +33,14 @@ public class GameLauncher extends JFrame{
 		jframe.pack();
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
+		//icon
+				try {
+					BufferedImage image = ImageIO.read(getClass().getResource("/Tin_Can.png"));
+					setIconImage(image);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+		}
 	}
 	
 	

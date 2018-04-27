@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 
 import flappytin.Background;
 import flappytin.GameLauncher;
+import flappytin.PlayMusic;
 
 public class MenuState extends GameState{
 	
@@ -28,12 +29,17 @@ public class MenuState extends GameState{
 	
 	String[] selections = {"Play", "Credits"};
 	private int currentSelection = 0;
+	
+	private PlayMusic mplayer;
 
 	public MenuState(GameStateManager gsm) {
 		super(gsm);
 	}
 	
 	public void init() {
+		System.out.println("WTFDSADSA");
+		mplayer = new PlayMusic("216848_8_bit_shit.wav");
+		mplayer.play();
 		bg = new Background("flappymenubg.png", 0, 0);
 		bg.setVector(.3, 0);
 		initialized = true;
@@ -93,8 +99,10 @@ public class MenuState extends GameState{
 		// enter
 		} else if (keyCode == KeyEvent.VK_ENTER) {
 			switch (currentSelection) {
+				
 				case 0: // PLAY
 					System.out.println("PLAY");
+					gsm.popState();
 					gsm.pushState(gsm.createGameState());
 					break;
 				/*case 1: // tutorial
@@ -104,6 +112,7 @@ public class MenuState extends GameState{
 				*/
 				case 1: // credits
 					System.out.println("CREDITS");
+					gsm.popState();
 					gsm.pushState(gsm.createCreditState());
 					break;
 			}
@@ -117,8 +126,9 @@ public class MenuState extends GameState{
 
 	@Override
 	public void deInit() {
-		// TODO Auto-generated method stub
+		mplayer.turnOff();
 		
+		initialized = false;
 	}
 
 	

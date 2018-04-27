@@ -18,6 +18,8 @@ public class ResourceLoader {
 		ClassLoader cLoader = getClass().getClassLoader();
 		
 		try {
+			
+			
 			BufferedImage flappyBG = ImageIO.read(new File(cLoader.getResource("flappymenubg.png").toURI()));
 			LOADED_ASSETS.put("flappymenubg.png", flappyBG);
 			
@@ -30,14 +32,19 @@ public class ResourceLoader {
 			BufferedImage RPipe = ImageIO.read(new File(cLoader.getResource("rpipe.png").toURI()));
 			LOADED_ASSETS.put("rpipe.png", RPipe);
 			
-			BufferedImage forest = ImageIO.read(new File(cLoader.getResource("forest-patrol.jpg").toURI()));
-			LOADED_ASSETS.put("forest-patrol.jpg", forest);
 			
-			LOADED_ASSETS.put("polgyonMI.jpg", ImageIO.read(new File(cLoader.getResource("polgyonMI.jpg").toURI())));
 			
 			LOADED_ASSETS.put("tincanBG.png", ImageIO.read(new File(cLoader.getResource("tincanBG.png").toURI())));
 			
 			LOADED_ASSETS.put("resizedCreditBG.png", ImageIO.read(new File(cLoader.getResource("resizedCreditBG.png").toURI())));
+						
+			LOADED_ASSETS.put("216848_8_bit_shit.wav", new File(cLoader.getResource("216848_8_bit_shit.wav").toURI()));
+			
+			LOADED_ASSETS.put("359466_Skullbeatz___We_Heart_8_Bi.wav", new File(cLoader.getResource("359466_Skullbeatz___We_Heart_8_Bi.wav").toURI()));
+			
+			LOADED_ASSETS.put("291458_Waterflame___Time_machine.wav", new File(cLoader.getResource("291458_Waterflame___Time_machine.wav").toURI()));
+			
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -57,8 +57,14 @@ public class GameStateManager {
 	}
 	
 	public void pushState(GameState state) {
+		if (!state.initialized) {
+			state.init();
+		}
 		states.push(state);
-		//System.out.println(states.peek());
+	}
+	
+	public Stack getStack() {
+		return states;
 	}
 	
 	public void tick() {

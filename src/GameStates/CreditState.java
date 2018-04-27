@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 import flappytin.Background;
 import flappytin.GameLauncher;
+import flappytin.PlayMusic;
 import flappytin.ResourceLoader;
 
 public class CreditState extends GameState{
@@ -18,21 +19,37 @@ public class CreditState extends GameState{
 	private double y = 100;
 	private double dy = 0.15;
 	
+	PlayMusic mplayer;
+	
 	private String[][] creditStrings = {
 			
 			{
 				"Idea thinker",
 				"Scripting kiddie",
-				"image makers",
+				"Menu Music [Royal Free]",
+				"Link",
+				"Play Music [Royal Free]",
+				"Link",
+				"Credit Scene Music [Royal Free]",
+				"Link",
 				"special thanks to",
+				"Mrs. Kristen Sailors.",
+				" ",
+				" ",
+				"Source Code"
 			},
 			
 			{
-				"Tin can", 
-				"Tin can",
-				"google",
-				"flappy bird",
-				
+				"Thinh Nguyen", 
+				"Thinh Nguyen",
+				"\"8-Bit\" by Father-of-Death", "https://www.newgrounds.com/audio/listen/216848",
+				"\"-Time Machine-\" by Waterflame", "https://www.newgrounds.com/audio/listen/291458",
+				"\"We Heart 8-Bit\" by Skullbeatz", "https://www.newgrounds.com/audio/listen/359466",
+				"my teacher",
+				" ",
+				" ",
+				" ",
+				"https://github.com/super10099/TinCanFromTheHeights"
 			},
 			
 			
@@ -46,6 +63,9 @@ public class CreditState extends GameState{
 
 	@Override
 	public void init() {
+		mplayer = new PlayMusic("359466_Skullbeatz___We_Heart_8_Bi.wav");
+		mplayer.play();
+		
 		// TODO Auto-generated method stub
 		y = yInt;
 		
@@ -56,6 +76,7 @@ public class CreditState extends GameState{
 	}
 	
 	public void deInit() {
+		mplayer.turnOff();
 		initialized = false;
 	}
 
@@ -93,10 +114,14 @@ public class CreditState extends GameState{
 		
 		
 	}
+	
+	
+	
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		gsm.popState();
+		gsm.pushState(gsm.MENU_STATE);
 	}
 
 	@Override
