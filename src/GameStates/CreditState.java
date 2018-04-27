@@ -26,6 +26,8 @@ public class CreditState extends GameState{
 			{
 				"Idea thinker",
 				"Scripting kiddie",
+				"Menu Background Image",
+				"Pipe Image",
 				"Menu Music [Royal Free]",
 				"Link",
 				"Play Music [Royal Free]",
@@ -42,6 +44,9 @@ public class CreditState extends GameState{
 			{
 				"Thinh Nguyen", 
 				"Thinh Nguyen",
+				"https://ellisonleao.github.io/",
+				"http://pixelart.studio/",
+				"rickandmorty.wikia.com",
 				"\"8-Bit\" by Father-of-Death", "https://www.newgrounds.com/audio/listen/216848",
 				"\"-Time Machine-\" by Waterflame", "https://www.newgrounds.com/audio/listen/291458",
 				"\"We Heart 8-Bit\" by Skullbeatz", "https://www.newgrounds.com/audio/listen/359466",
