@@ -3,6 +3,7 @@ package flappytin;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.sound.sampled.*;
 
@@ -15,12 +16,11 @@ public class PlayMusic {
 	public PlayMusic(String uri) {
 		ClassLoader cLoader = getClass().getClassLoader();
 		try {
-			File music = new File(cLoader.getResource(uri).toURI());
-			System.out.println(music.exists());
-			in = AudioSystem.getAudioInputStream(music);
+			URL musicURL = (URL) ResourceLoader.LOADED_ASSETS.get(uri);
+			in = AudioSystem.getAudioInputStream(musicURL);
 			clip = AudioSystem.getClip();
 			clip.open(in);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException | URISyntaxException e) {
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

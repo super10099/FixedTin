@@ -34,13 +34,17 @@ public class GameLauncher extends JFrame{
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
 		//icon
-				try {
+				/*
+				 * 
+				 * try {
 					BufferedImage image = ImageIO.read(getClass().getResource("/Tin_Can.png"));
 					setIconImage(image);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 		}
+		
+		*/
 	}
 	
 	

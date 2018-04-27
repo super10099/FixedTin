@@ -20,35 +20,27 @@ public class ResourceLoader {
 		try {
 			
 			
-			BufferedImage flappyBG = ImageIO.read(new File(cLoader.getResource("flappymenubg.png").toURI()));
-			LOADED_ASSETS.put("flappymenubg.png", flappyBG);
+			LOADED_ASSETS.put("flappymenubg.png", ImageIO.read(cLoader.getResource("flappymenubg.png")));
 			
-			BufferedImage normalCan = ImageIO.read(new File(cLoader.getResource("Tin_Can.png").toURI()));
-			LOADED_ASSETS.put("Tin_Can.png", normalCan);
+			LOADED_ASSETS.put("Tin_Can.png", ImageIO.read(cLoader.getResource("Tin_Can.png")));
 			
-			BufferedImage lPipe = ImageIO.read(new File(cLoader.getResource("lpipe.png").toURI()));
-			LOADED_ASSETS.put("lpipe.png", lPipe);
+			LOADED_ASSETS.put("lpipe.png", ImageIO.read(cLoader.getResource("lpipe.png")));
 			
-			BufferedImage RPipe = ImageIO.read(new File(cLoader.getResource("rpipe.png").toURI()));
-			LOADED_ASSETS.put("rpipe.png", RPipe);
+			LOADED_ASSETS.put("rpipe.png", ImageIO.read(cLoader.getResource("rpipe.png")));
 			
 			
 			
-			LOADED_ASSETS.put("tincanBG.png", ImageIO.read(new File(cLoader.getResource("tincanBG.png").toURI())));
 			
-			LOADED_ASSETS.put("resizedCreditBG.png", ImageIO.read(new File(cLoader.getResource("resizedCreditBG.png").toURI())));
+			LOADED_ASSETS.put("resizedCreditBG.png", ImageIO.read(cLoader.getResource("resizedCreditBG.png")));
 						
-			LOADED_ASSETS.put("216848_8_bit_shit.wav", new File(cLoader.getResource("216848_8_bit_shit.wav").toURI()));
+			LOADED_ASSETS.put("216848_8_bit_shit.wav", cLoader.getResource("216848_8_bit_shit.wav"));
 			
-			LOADED_ASSETS.put("359466_Skullbeatz___We_Heart_8_Bi.wav", new File(cLoader.getResource("359466_Skullbeatz___We_Heart_8_Bi.wav").toURI()));
+			LOADED_ASSETS.put("359466_Skullbeatz___We_Heart_8_Bi.wav", cLoader.getResource("359466_Skullbeatz___We_Heart_8_Bi.wav"));
 			
-			LOADED_ASSETS.put("291458_Waterflame___Time_machine.wav", new File(cLoader.getResource("291458_Waterflame___Time_machine.wav").toURI()));
-			
+			LOADED_ASSETS.put("291458_Waterflame___Time_machine.wav", cLoader.getResource("291458_Waterflame___Time_machine.wav"));
 			
 			
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}
