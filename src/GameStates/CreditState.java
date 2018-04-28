@@ -28,6 +28,7 @@ public class CreditState extends GameState{
 				"Scripting kiddie",
 				"Menu Background Image",
 				"Pipe Image",
+				"Tin Can Image",
 				"Menu Music [Royal Free]",
 				"Link",
 				"Play Music [Royal Free]",
